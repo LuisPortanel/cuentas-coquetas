@@ -1,4 +1,5 @@
 module.exports = {
+  parser: 'babel-eslint',
   env: {
     browser: true,
     es6: true,
@@ -6,6 +7,7 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
+    'plugin:flowtype/recommended',
     'standard'
   ],
   globals: {
@@ -20,7 +22,9 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: [
-    'react'
+    'react',
+    'flowtype',
+    'eslint-plugin-flowtype'
   ],
   rules: {
   }
