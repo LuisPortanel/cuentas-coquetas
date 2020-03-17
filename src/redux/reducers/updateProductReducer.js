@@ -1,13 +1,14 @@
 // @flow
 import { type Action } from '.'
-import { UPDATE_PRODUCT } from '../../utils/constants'
+import { UPDATE_PRODUCT, INCREMENT_PRODUCTS } from '../../utils/constants'
 
 const initialState = {
   products: {},
   cheapest: {
     total: 0,
     productId: -1
-  }
+  },
+  number: 2
 }
 
 const baseProduct = {
@@ -49,6 +50,14 @@ export default (state: State = initialState, action: Action): State => {
         cheapest
       }
     }
+
+    case INCREMENT_PRODUCTS: {
+      return {
+        ...state,
+        number: state.number + 1
+      }
+    }
+
     default:
       return state
   }

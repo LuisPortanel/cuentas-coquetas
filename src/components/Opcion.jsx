@@ -25,7 +25,7 @@ const selectAll = event => event.target.select()
 
 const Product = ({ productId, product, cheapest, units, updateProduct }: ProductType) => {
   return (
-    <div className={'form-row align-items-center justify-content-center py-3'} style={ cheapest.productId === productId ? { backgroundImage: 'linear-gradient(40deg,#45cafc,#303f9f)', color: 'white' } : {}}>
+    <div className={'form-row align-items-center justify-content-center py-3'} style={ cheapest.productId === productId ? { backgroundImage: 'linear-gradient(40deg,#45cafc,#303f9f)', color: 'white', borderRadius: '10px' } : {}}>
 
       <p className="col-12 mb-1">Producto #{parseInt(productId) + 1}</p>
       <div className="col-auto form-row align-items-center">
@@ -103,9 +103,9 @@ const Product = ({ productId, product, cheapest, units, updateProduct }: Product
         <div className="col-12 text-right">
           <div>
             Costo por {
-              units === 'gr' || units === 'kg' ? 'kilogramo' : (units === 'l' || units === 'ml' ? 'litro' : 'piezas')
+              units === 'gr' || units === 'kg' ? 'kilogramo' : (units === 'l' || units === 'ml' ? 'litro' : 'pieza')
             }:
-            <b>${ units === 'gr' || units === 'ml' ? parseFloat(product.total * 1000).toFixed(2) : parseFloat(product.total).toFixed(2)}</b>
+            <b> ${ units === 'gr' || units === 'ml' ? parseFloat(product.total * 1000).toFixed(2) : parseFloat(product.total).toFixed(2)}</b>
           </div>
         </div>
       }
@@ -113,14 +113,11 @@ const Product = ({ productId, product, cheapest, units, updateProduct }: Product
   )
 }
 
-const mapStateToProps = (state, props) => {
-  console.log(state, props)
-  return {
-    units: state.units.units,
-    product: state.products.products[props.productId],
-    cheapest: state.products.cheapest
-  }
-}
+const mapStateToProps = (state, props) => ({
+  units: state.units.units,
+  product: state.products.products[props.productId],
+  cheapest: state.products.cheapest
+})
 
 const mapDispatchToProps = dispatch => ({
   updateProduct: payload => dispatch({ type: UPDATE_PRODUCT, payload })
