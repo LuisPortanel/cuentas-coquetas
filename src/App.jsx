@@ -1,6 +1,5 @@
 // @flow
 import React from 'react'
-import './assets/App.css'
 import { Provider } from 'react-redux'
 import { Router } from 'react-router'
 import Routes from './routes'

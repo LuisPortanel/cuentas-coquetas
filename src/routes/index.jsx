@@ -7,7 +7,7 @@ import Nav from '../components/Nav'
 const Routes = () => (
   <>
     <Nav />
-    <div className="container">
+    <div className="container-fluid">
       <Switch>
         <Route path="/" exact component={Home} />
       </Switch>
