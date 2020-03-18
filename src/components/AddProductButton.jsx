@@ -8,7 +8,9 @@ type AddProductButtonType = {
 }
 
 const AddProductButton = ({ incrementProducts }: AddProductButtonType) =>
-  <button type="button" className="btn btn-lg btn-block my-4" style={{ backgroundImage: 'linear-gradient(40deg,#2096ff,#05ffa3)', color: 'white' }} onClick={() => incrementProducts()}>Agregar producto</button>
+  <div className="row justify-content-center">
+    <button type="button" className="btn my-4 aqua-gra dient" style={{ background: 'linear-gradient(40deg, #65c8c6, #65c8c6)' }} onClick={incrementProducts}>Agregar producto</button>
+  </div>
 
 const mapDispatchToProps = dispatch => ({
   incrementProducts: () => dispatch({ type: INCREMENT_PRODUCTS })

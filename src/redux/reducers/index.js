@@ -14,14 +14,6 @@ export type Action = {
   +type: string,
   units: string,
   payload: any
-  /*,
-  payload: {
-    id: number,
-    next: string,
-    previous: string,
-    results: Array<string>
-  },
-  pokemon: Array<string> */
 }
 
 export default combineReducers<any, any>(reducers)

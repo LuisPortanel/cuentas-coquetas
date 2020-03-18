@@ -12,18 +12,15 @@ type HomeType = {
 const Home = ({ numberOfProducts }: HomeType) => {
   return (
     <div>
-      <h1 className="py-3">Cuentas Coquetas</h1>
 
       <UnitSelector />
 
       <form>
-        {console.log(numberOfProducts)}
         {
           [...Array(numberOfProducts)].map((e, i) => <Opcion key={i} productId={i} />)
-
         }
-
       </form>
+
       <AddProductButton />
 
     </div>

@@ -15,19 +15,17 @@ type ProductType = {
       cost: number,
       total: number
     },
-    cheapest: {
-      productId: number,
-      total: number
-    }
+    cheapest: number
 }
 
 const selectAll = event => event.target.select()
 
 const Product = ({ productId, product, cheapest, units, updateProduct }: ProductType) => {
+  const isCheapest = !isUndefined(product) && cheapest === product.total && cheapest > 0
   return (
-    <div className={'form-row align-items-center justify-content-center py-3'} style={ cheapest.productId === productId ? { backgroundImage: 'linear-gradient(40deg,#45cafc,#303f9f)', color: 'white', borderRadius: '10px' } : {}}>
+    <div className={'form-row align-items-center justify-content-center py-3'} style={ isCheapest ? { backgroundImage: 'linear-gradient(40deg,#45cafc,#303f9f)', color: 'white', borderRadius: '10px' } : {}}>
 
-      <p className="col-12 mb-1">Producto #{parseInt(productId) + 1}</p>
+      <p className="col-12 mb-2 d-flex justify-content-between"><span>Producto #{parseInt(productId) + 1}</span>{isCheapest && <span>¡Mejor opción!</span>}</p>
       <div className="col-auto form-row align-items-center">
         <div className="col-auto">
           <div className="input-group input-group-sm mb-2">
@@ -100,13 +98,14 @@ const Product = ({ productId, product, cheapest, units, updateProduct }: Product
         </div>
       </div>
       { !isUndefined(product) && product.total > 0 &&
-        <div className="col-12 text-right">
-          <div>
+        <div className="col-12 text-right mt-2">
             Costo por {
-              units === 'gr' || units === 'kg' ? 'kilogramo' : (units === 'l' || units === 'ml' ? 'litro' : 'pieza')
-            }:
-            <b> ${ units === 'gr' || units === 'ml' ? parseFloat(product.total * 1000).toFixed(2) : parseFloat(product.total).toFixed(2)}</b>
-          </div>
+            units === 'gr' || units === 'kg' ? 'kilogramo' : (units === 'l' || units === 'ml' ? 'litro' : 'pieza')
+          }:
+          <b> ${ units === 'gr' || units === 'ml'
+            ? parseFloat(product.total * 1000).toFixed(2)
+            : parseFloat(product.total).toFixed(2)
+          }</b>
         </div>
       }
     </div>
