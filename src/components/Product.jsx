@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { UPDATE_PRODUCT } from '../utils/constants'
 import { isUndefined } from 'lodash'
+import './Product.scss'
 
 type ProductType = {
     productId: number,
@@ -22,17 +23,18 @@ const selectAll = event => event.target.select()
 
 const Product = ({ productId, product, cheapest, units, updateProduct }: ProductType) => {
   const isCheapest = !isUndefined(product) && cheapest === product.total && cheapest > 0
+
   return (
-    <div className={'form-row align-items-center justify-content-center py-3'} style={ isCheapest ? { backgroundImage: 'linear-gradient(40deg,#45cafc,#303f9f)', color: 'white', borderRadius: '10px' } : {}}>
+    <div className={`Product form-row align-items-center justify-content-center py-3 px-1 ${isCheapest ? 'cheapest' : ''}`}>
 
       <p className="col-12 mb-2 d-flex justify-content-between"><span>Producto #{parseInt(productId) + 1}</span>{isCheapest && <span>¡Mejor opción!</span>}</p>
-      <div className="col-auto form-row align-items-center">
+
+      <div className="col-auto form-row align-items-center multiplier">
         <div className="col-auto">
           <div className="input-group input-group-sm mb-2">
             <input
               type="number"
               className="form-control"
-              style={{ maxWidth: 50 }}
               step="0.1"
               min="0.1"
               defaultValue="1"
@@ -46,18 +48,19 @@ const Product = ({ productId, product, cheapest, units, updateProduct }: Product
           </div>
         </div>
         <div className="col-auto">
-          <label>con</label>
+          <label>
+            <span className="d-none d-sm-inline">producto{!isUndefined(product) && product.multiplier !== 1 ? 's' : ''} </span>con
+          </label>
         </div>
       </div>
 
-      <div className="col-auto form-row align-items-center">
+      <div className="col-auto form-row align-items-center quantity">
         <div className="col-auto">
           <div className="input-group input-group-sm m b-2">
             <input
               type="number"
               className="form-control"
               id={`cantidad${productId}`}
-              style={{ maxWidth: 60 }}
               step="0.1"
               min="0.1"
               onInput={e => updateProduct({
@@ -77,7 +80,7 @@ const Product = ({ productId, product, cheapest, units, updateProduct }: Product
         </div>
       </div>
 
-      <div className="col-auto">
+      <div className="col-auto form-row align-items-center cost">
         <div className="input-group input-group-sm mb-2">
           <div className="input-group-prepend">
             <div className="input-group-text">$</div>
@@ -85,7 +88,6 @@ const Product = ({ productId, product, cheapest, units, updateProduct }: Product
           <input
             type="number"
             className="form-control"
-            style={{ maxWidth: 60 }}
             step="0.01"
             min="0.01"
             onInput={e => updateProduct({

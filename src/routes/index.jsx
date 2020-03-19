@@ -7,7 +7,7 @@ import Nav from '../components/Nav'
 const Routes = () => (
   <>
     <Nav />
-    <div className="container-fluid">
+    <div className="container" style={{ maxWidth: '900px' }}>
       <Switch>
         <Route path="/" exact component={Home} />
       </Switch>

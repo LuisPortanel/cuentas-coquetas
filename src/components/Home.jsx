@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 // import { Link } from 'react-router-dom'
-import Opcion from './Opcion'
+import Product from './Product'
 import UnitSelector from './UnitSelector'
 import AddProductButton from './AddProductButton'
 
@@ -11,19 +11,19 @@ type HomeType = {
 }
 const Home = ({ numberOfProducts }: HomeType) => {
   return (
-    <div>
+    <>
 
       <UnitSelector />
 
       <form>
         {
-          [...Array(numberOfProducts)].map((e, i) => <Opcion key={i} productId={i} />)
+          [...Array(numberOfProducts)].map((e, i) => <Product key={i} productId={i} />)
         }
       </form>
 
       <AddProductButton />
 
-    </div>
+    </>
   )
 }
 
