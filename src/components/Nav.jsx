@@ -2,11 +2,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-/* <nav class="navbar-dark unique-color-dark navbar" style="margin-top: 20px;">
-      <a aria-current="page" class="navbar-brand active" data-test="navbar-brand" href="/navigation/navbar">
-        <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="30" alt="">
-          </a>
-          </nav> */
 /*
 background-color: #d8f1f1;
 blue-color: #65c8c6;
@@ -18,7 +13,7 @@ const Nav = () => {
     <nav className="navbar navbar-expand navbar-dark fixed-top" style={{ backgroundColor: '#d8f1f1' }}>
       <div className="container">
         <Link className="nav-link" to="/" style={{ fontWeight: 'bolder', fontSize: '1.25em' }}>
-          <span style={{ color: '#e51b24' }}>Cuentas</span> <span style={{ color: '#65c8c6' }}>coquetas</span>
+          <span style={{ color: '#e51b24' }}>Cuentas</span> <span style={{ color: '#65c8c6' }}>Coquetas</span>
         </Link>
 
         <ul className="navbar-nav ml-auto">
