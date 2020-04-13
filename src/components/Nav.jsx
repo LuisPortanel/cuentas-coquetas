@@ -13,8 +13,8 @@ const Nav = () => {
 
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <button type="button" className="btn btn-link" onClick={() => window.location.reload()}>
-              <i className="fa fa-trash-alt cyan-text"></i>
+            <button type="button" className="btn btn-link" onClick={() => window.location.reload()} title="Recargar">
+              <i className="fa fa-redo-alt cyan-text"></i>
             </button>
           </li>
         </ul>

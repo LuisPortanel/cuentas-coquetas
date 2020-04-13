@@ -7,9 +7,9 @@ import UnitSelector from './UnitSelector'
 import AddProductButton from './AddProductButton'
 
 type HomeType = {
-  numberOfProducts: number
+  products: {}
 }
-const Home = ({ numberOfProducts }: HomeType) => {
+const Home = ({ products }: HomeType) => {
   return (
     <>
 
@@ -17,7 +17,7 @@ const Home = ({ numberOfProducts }: HomeType) => {
 
       <form>
         {
-          [...Array(numberOfProducts)].map((e, i) => <Product key={i} productId={i} />)
+          Object.keys(products).map((e, i) => <Product key={e} productId={e} />)
         }
       </form>
 
@@ -28,7 +28,8 @@ const Home = ({ numberOfProducts }: HomeType) => {
 }
 
 const mapStateToProps = state => ({
-  numberOfProducts: state.products.number
+  products: state.products.products
+  // numberOfProducts: state.products.number
 })
 
 export default connect<any, any, any, any, any, any>(mapStateToProps)(Home)

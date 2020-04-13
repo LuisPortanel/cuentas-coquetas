@@ -1,7 +1,7 @@
 // @flow
 import React from 'react'
 import { connect } from 'react-redux'
-import { UPDATE_PRODUCT } from '../utils/constants'
+import { UPDATE_PRODUCT, DELETE_PRODUCT } from '../utils/constants'
 import { isUndefined } from 'lodash'
 import './Product.scss'
 
@@ -9,6 +9,7 @@ type ProductType = {
     productId: number,
     units: string,
     updateProduct: any,
+    deleteProduct: any,
     result: number,
     product: {
       multiplier: number,
@@ -21,7 +22,7 @@ type ProductType = {
 
 const selectAll = event => event.target.select()
 
-const Product = ({ productId, product, cheapest, units, updateProduct }: ProductType) => {
+const Product = ({ productId, product, cheapest, units, updateProduct, deleteProduct }: ProductType) => {
   const isCheapest = !isUndefined(product) && cheapest === product.total && cheapest > 0
 
   return (
@@ -56,13 +57,14 @@ const Product = ({ productId, product, cheapest, units, updateProduct }: Product
 
       <div className="col-auto form-row align-items-center quantity">
         <div className="col-auto">
-          <div className="input-group input-group-sm m b-2">
+          <div className="input-group input-group-sm">
             <input
               type="number"
               className="form-control"
               id={`cantidad${productId}`}
               step="0.1"
               min="0.1"
+              defaultValue="1"
               onInput={e => updateProduct({
                 value: e.target.value,
                 productId,
@@ -99,17 +101,25 @@ const Product = ({ productId, product, cheapest, units, updateProduct }: Product
           />
         </div>
       </div>
-      { !isUndefined(product) && product.total > 0 &&
-        <div className="col-12 text-right mt-2">
+      <div className="col-12 my-2 mx-0 d-flex justify-content-between">
+        <div className="">
+          { !isUndefined(product) && product.total > 0 &&
+            <>
             Costo por {
-            units === 'gr' || units === 'kg' ? 'kilogramo' : (units === 'l' || units === 'ml' ? 'litro' : 'pieza')
-          }:
-          <b> ${ units === 'gr' || units === 'ml'
-            ? parseFloat(product.total * 1000).toFixed(2)
-            : parseFloat(product.total).toFixed(2)
-          }</b>
+                units === 'gr' || units === 'kg' ? 'kilogramo' : (units === 'l' || units === 'ml' ? 'litro' : 'pieza')
+              }:
+              <b> ${ units === 'gr' || units === 'ml'
+                ? parseFloat(product.total * 1000).toFixed(2)
+                : parseFloat(product.total).toFixed(2)
+              }</b>
+            </>
+          }
         </div>
-      }
+        <button type="button" className="btn btn-link px-3 py-1 m-0 deleteProduct" onClick={() => deleteProduct(productId)} tabIndex="1" title="Eliminar producto">
+          <i className="fas fa-trash-alt"></i>
+        </button>
+      </div>
+
     </div>
   )
 }
@@ -121,7 +131,8 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  updateProduct: payload => dispatch({ type: UPDATE_PRODUCT, payload })
+  updateProduct: payload => dispatch({ type: UPDATE_PRODUCT, payload }),
+  deleteProduct: productId => dispatch({ type: DELETE_PRODUCT, productId })
 })
 
 export default connect<any, any, any, any, any, any>(mapStateToProps, mapDispatchToProps)(Product)
