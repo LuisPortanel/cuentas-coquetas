@@ -29,7 +29,6 @@ const Home = ({ products }: HomeType) => {
 
 const mapStateToProps = state => ({
   products: state.products.products
-  // numberOfProducts: state.products.number
 })
 
 export default connect<any, any, any, any, any, any>(mapStateToProps)(Home)

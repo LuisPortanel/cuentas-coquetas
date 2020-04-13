@@ -8,11 +8,10 @@ const defaultProduct = {
   cost: 0,
   total: 0
 }
-
 const initialState = {
   products: {
-    0: defaultProduct,
-    1: defaultProduct
+    // $FlowFixMe
+    0: defaultProduct, 1: defaultProduct
   },
   cheapest: 0
 }

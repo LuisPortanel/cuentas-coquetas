@@ -13,6 +13,7 @@ export type State = typeof reducers
 export type Action = {
   +type: string,
   units: string,
+  productId: number,
   payload: any
 }
 
