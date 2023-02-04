@@ -8,8 +8,8 @@ import { type Store as ReduxStore, type StoreEnhancer } from 'redux'
 import { type State, type Action } from './redux/reducers'
 import { type BrowserHistory } from 'history'
 
-import ReactGA from 'react-ga'
-ReactGA.initialize('UA-161190257-1')
+import ReactGA from 'react-ga4'
+ReactGA.initialize('G-J741V4FD6J')
 
 type Store = ReduxStore<State, StoreEnhancer<State, Action>>
 type AppType = {
@@ -19,7 +19,7 @@ type AppType = {
 
 const App = ({ store, browserHistory }: AppType) => {
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search)
+    ReactGA.send({ hitType: 'pageview', page: window.location.pathname + window.location.search })
   }, [])
 
   return <Provider store={store}>
